@@ -1,6 +1,6 @@
 {
   "name": "tapback-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Monitor and control tmux sessions from your mobile device",
   "bin": {
     "tb": "./bin/cli.js"
