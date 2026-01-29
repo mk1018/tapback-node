@@ -51,9 +51,7 @@ console.log('');
 console.log('  Tapback is running!');
 console.log(`  URL:          http://${macIP}:${port}/`);
 console.log(`  Settings:     http://${macIP}:${port}/settings`);
-if (cfg.pinEnabled) {
-  console.log(`  PIN:          ${pin}`);
-}
+console.log(`  PIN:          ${pin} ${cfg.pinEnabled ? '' : '(disabled)'}`);
 console.log(`  Settings PIN: ${settingsPin}`);
 console.log('');
 

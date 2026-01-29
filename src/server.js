@@ -51,7 +51,7 @@ function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appUR
 
   // Auth middleware for main page
   function requireAuth(req, res, next) {
-    if (!pinEnabled) return next();
+    if (!config.load().pinEnabled) return next();
     if (req.cookies.tapback_auth === authToken) return next();
     return res.redirect('/auth');
   }
@@ -67,13 +67,13 @@ function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appUR
   });
 
   app.get('/auth', (req, res) => {
-    if (!pinEnabled) return res.redirect('/');
+    if (!config.load().pinEnabled) return res.redirect('/');
     if (req.cookies.tapback_auth === authToken) return res.redirect('/');
     res.type('html').send(html.pinPage(null, '/auth'));
   });
 
   app.post('/auth', (req, res) => {
-    if (!pinEnabled) return res.redirect('/');
+    if (!config.load().pinEnabled) return res.redirect('/');
     if (req.body.pin === pin) {
       res.cookie('tapback_auth', authToken, { maxAge: 86400000, httpOnly: true });
       return res.redirect('/');
@@ -131,7 +131,7 @@ function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appUR
   });
 
   app.get('/api/settings', requireSettingsAuth, (req, res) => {
-    res.json(config.load());
+    res.json({ ...config.load(), pin });
   });
 
   app.put('/api/settings', requireSettingsAuth, (req, res) => {
@@ -140,6 +140,7 @@ function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appUR
 
     if (typeof body.pinEnabled === 'boolean') {
       cfg.pinEnabled = body.pinEnabled;
+      console.log(`[Tapback] PIN ${body.pinEnabled ? 'enabled' : 'disabled'} (PIN: ${pin})`);
     }
     if (body.addProxy) {
       cfg.proxyPorts[String(body.addProxy.target)] = body.addProxy.external;
