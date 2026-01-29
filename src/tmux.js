@@ -15,8 +15,7 @@ exports.listSessions = async () => {
   return out.split('\n').filter(Boolean);
 };
 
-exports.capture = (session) =>
-  run(['capture-pane', '-t', `${session}:0.0`, '-p', '-S', '-300']);
+exports.capture = (session) => run(['capture-pane', '-t', `${session}:0.0`, '-p', '-S', '-300']);
 
 exports.sendKeys = async (session, text) => {
   if (text) {

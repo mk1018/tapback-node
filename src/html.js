@@ -10,7 +10,9 @@ exports.mainPage = (appURL, quickButtons = []) => {
     ? '.app-link{display:block;padding:8px 14px;background:#1f3a5f;color:#58a6ff;text-align:center;text-decoration:none;font-size:13px;border-bottom:1px solid #30363d}'
     : '';
   const appLinkHtml = appURL ? `<a class="app-link" href="${appURL}">Open App</a>` : '';
-  const customRow = customButtonsHtml ? `<div class="row quick cust">${customButtonsHtml}</div>` : '';
+  const customRow = customButtonsHtml
+    ? `<div class="row quick cust">${customButtonsHtml}</div>`
+    : '';
 
   return `<!DOCTYPE html>
 <html><head>
@@ -329,14 +331,14 @@ exports.settingsPage = (config) => {
     .sort(([a], [b]) => Number(a) - Number(b))
     .map(
       ([target, external]) =>
-        `<div class="item" data-proxy="${target}"><div class="item-content"><span class="item-icon">⇌</span><div class="item-text"><span class="item-label">localhost:${target}</span><span class="item-arrow">→</span><span class="item-value">:${external}</span></div></div><button class="del-btn" onclick="delProxy('${target}')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>`
+        `<div class="item" data-proxy="${target}"><div class="item-content"><span class="item-icon">⇌</span><div class="item-text"><span class="item-label">localhost:${target}</span><span class="item-arrow">→</span><span class="item-value">:${external}</span></div></div><button class="del-btn" onclick="delProxy('${target}')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>`,
     )
     .join('');
 
   const buttonRows = (config.quickButtons || [])
     .map(
       (b, i) =>
-        `<div class="item" data-btn="${i}"><div class="item-content"><span class="item-icon">⚡</span><div class="item-text"><span class="item-label">${b.label}</span><span class="item-arrow">→</span><span class="item-value">${b.command}</span></div></div><button class="del-btn" onclick="delBtn(${i})"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>`
+        `<div class="item" data-btn="${i}"><div class="item-content"><span class="item-icon">⚡</span><div class="item-text"><span class="item-label">${b.label}</span><span class="item-arrow">→</span><span class="item-value">${b.command}</span></div></div><button class="del-btn" onclick="delBtn(${i})"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>`,
     )
     .join('');
 

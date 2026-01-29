@@ -6,8 +6,8 @@ const CONFIG_PATH = path.join(os.homedir(), '.tapback.json');
 
 const DEFAULTS = {
   pinEnabled: true,
-  proxyPorts: {},    // { "3000": 3001 } = localhost:3000 -> :3001
-  quickButtons: [],  // [{ label, command }]
+  proxyPorts: {}, // { "3000": 3001 } = localhost:3000 -> :3001
+  quickButtons: [], // [{ label, command }]
 };
 
 function load() {

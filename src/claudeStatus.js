@@ -19,7 +19,7 @@ class ClaudeStatusStore {
 
   getAll() {
     return [...this.statuses.values()].sort(
-      (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+      (a, b) => new Date(b.timestamp) - new Date(a.timestamp),
     );
   }
 }
@@ -98,7 +98,7 @@ exit 0
     const hasTapback = arr.some(
       (item) =>
         item.hooks &&
-        item.hooks.some((h) => h.command && h.command.includes('tapback-status-hook.sh'))
+        item.hooks.some((h) => h.command && h.command.includes('tapback-status-hook.sh')),
     );
     if (!hasTapback) {
       existing[key] = [...arr, ...value];

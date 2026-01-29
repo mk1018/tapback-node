@@ -55,9 +55,7 @@ node bin/cli.js --no-pin
 {
   "pinEnabled": true,
   "proxyPorts": { "3000": 3001 },
-  "quickButtons": [
-    { "label": "push", "command": "/commit-push" }
-  ]
+  "quickButtons": [{ "label": "push", "command": "/commit-push" }]
 }
 ```
 

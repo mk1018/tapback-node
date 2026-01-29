@@ -27,7 +27,12 @@ function getLocalIP() {
 }
 
 function escapeJson(str) {
-  return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t');
+  return str
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r')
+    .replace(/\t/g, '\\t');
 }
 
 function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appURL = null } = {}) {
@@ -98,7 +103,13 @@ function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appUR
     const { session_id, status, project_dir, model } = req.body;
     if (!session_id) return res.status(400).json({ error: 'missing session_id' });
 
-    const statusObj = { session_id, status, project_dir, model, timestamp: new Date().toISOString() };
+    const statusObj = {
+      session_id,
+      status,
+      project_dir,
+      model,
+      timestamp: new Date().toISOString(),
+    };
     statusStore.update(statusObj);
 
     // Broadcast to all WebSocket clients
@@ -139,7 +150,11 @@ function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appUR
     if (body.addButton && body.addButton.label && body.addButton.command) {
       cfg.quickButtons.push({ label: body.addButton.label, command: body.addButton.command });
     }
-    if (typeof body.delButton === 'number' && body.delButton >= 0 && body.delButton < cfg.quickButtons.length) {
+    if (
+      typeof body.delButton === 'number' &&
+      body.delButton >= 0 &&
+      body.delButton < cfg.quickButtons.length
+    ) {
       cfg.quickButtons.splice(body.delButton, 1);
     }
 
