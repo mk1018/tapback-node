@@ -1,0 +1,20 @@
+{
+  "name": "tapback",
+  "version": "1.0.0",
+  "description": "Monitor and control tmux sessions from your mobile device",
+  "bin": {
+    "tapback": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "keywords": ["tmux", "terminal", "mobile", "claude-code"],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "http-proxy": "^1.18.1",
+    "ws": "^8.16.0"
+  }
+}
