@@ -37,7 +37,7 @@ node bin/cli.js --no-pin
 
 起動すると以下が表示されます：
 
-```
+```text
   Tapback is running!
   URL:          http://192.168.x.x:9876/
   Settings:     http://192.168.x.x:9876/settings

@@ -19,6 +19,7 @@ exports.mainPage = (appURL, quickButtons = []) => {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Tapback</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230d1117'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%2358a6ff'>▶</text></svg>">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;height:100dvh;overflow:hidden}
@@ -347,6 +348,7 @@ exports.settingsPage = (config) => {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Tapback — Settings</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230d1117'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%2358a6ff'>▶</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -466,6 +468,10 @@ input:checked+.slider:before{transform:translateX(20px);background:#fff}
         </div>
         <label class="switch"><input type="checkbox" id="pinToggle" ${config.pinEnabled ? 'checked' : ''} onchange="savePin()"><span class="slider"></span></label>
       </div>
+      <div id="pinDisplay" style="margin-top:10px;padding:10px 14px;background:#161b22;border-radius:8px;font-family:monospace;font-size:18px;letter-spacing:6px;text-align:center;color:#58a6ff;display:${config.pinEnabled ? 'block' : 'none'}">
+        <span style="font-size:11px;letter-spacing:normal;color:#8b949e;display:block;margin-bottom:4px">Current PIN</span>
+        <span id="pinValue">Loading...</span>
+      </div>
     </div>
   </div>
 
@@ -523,9 +529,16 @@ function toast(ok,text){
   setTimeout(()=>{t.classList.remove('show');},2200);
 }
 async function savePin(){
-  const res=await api('PUT',{pinEnabled:document.getElementById('pinToggle').checked});
+  const enabled=document.getElementById('pinToggle').checked;
+  const res=await api('PUT',{pinEnabled:enabled});
+  document.getElementById('pinDisplay').style.display=enabled?'block':'none';
   toast(res.ok,res.ok?'Saved':'Error');
 }
+async function loadPin(){
+  const res=await api('GET');
+  if(res.pin)document.getElementById('pinValue').textContent=res.pin;
+}
+loadPin();
 async function addProxy(){
   const t=document.getElementById('proxyTarget').value,e=document.getElementById('proxyExternal').value;
   if(!t||!e)return;
@@ -561,6 +574,7 @@ exports.pinPage = (error, action = '/auth') => {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tapback</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230d1117'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%2358a6ff'>▶</text></svg>">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:sans-serif;background:#0d1117;color:#c9d1d9;min-height:100vh;display:flex;align-items:center;justify-content:center}
