@@ -16,22 +16,33 @@ tmuxセッションの出力をWebSocket経由でリアルタイム配信し、�
 ## インストール
 
 ```bash
-npm install
+npm install -g tapback-cli
 ```
 
 ## 使い方
 
 ```bash
 # 基本起動（ポート9876）
-node bin/cli.js
+tb
 
 # ポート指定
-node bin/cli.js 8080
+tb 8080
 
 # リバースプロキシ付き（localhost:3000 → :3001で外部公開）
-node bin/cli.js --proxy 3000:3001
+tb --proxy 3000:3001
 
 # PIN認証を無効化
+tb --no-pin
+```
+
+### ローカル開発
+
+```bash
+npm install
+
+node bin/cli.js
+PORT=9877 node bin/cli.js
+node bin/cli.js --proxy 3000:3001
 node bin/cli.js --no-pin
 ```
 
@@ -49,7 +60,7 @@ node bin/cli.js --no-pin
 
 ## 設定
 
-設定は`~/.tapback.json`に保存されます。Web UIの`/settings`からも編集可能です。
+設定は`~/.config/tapback/config.json`に保存されます。Web UIの`/settings`からも編集可能です。
 
 ```json
 {

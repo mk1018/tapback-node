@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const CONFIG_PATH = path.join(os.homedir(), '.tapback.json');
+const CONFIG_DIR = path.join(os.homedir(), '.config', 'tapback');
+const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
 
 const DEFAULTS = {
   pinEnabled: true,
@@ -20,6 +21,7 @@ function load() {
 }
 
 function save(config) {
+  fs.mkdirSync(CONFIG_DIR, { recursive: true });
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
 }
 
