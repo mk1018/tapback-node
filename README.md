@@ -4,6 +4,19 @@
 
 tmuxセッションの出力をWebSocket経由でリアルタイム配信し、スマホからターミナルの閲覧・コマンド入力ができます。
 
+<p align="center">
+  <img src="images/terminal.png" width="280" alt="Terminal"><br>
+  <em>ターミナル起動画面 — URL・PIN・設定情報を表示</em>
+</p>
+<p align="center">
+  <img src="images/settings.png" width="280" alt="Settings"><br>
+  <em>設定画面 — PIN認証・プロキシポート・クイックボタンの管理</em>
+</p>
+<p align="center">
+  <img src="images/phone.png" width="280" alt="Phone"><br>
+  <em>モバイルUI — tmux出力のリアルタイム表示とコマンド送信</em>
+</p>
+
 ## 機能
 
 - tmuxセッションのリアルタイム監視（1秒間隔）
