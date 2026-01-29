@@ -38,7 +38,7 @@ tapback-node/
 │   ├── tmux.js           # tmuxコマンド実行 (child_process.execFile)
 │   ├── proxy.js          # リバースプロキシ (localhost書き換え)
 │   ├── claudeStatus.js   # Claude Codeステータス管理 + hooks設置
-│   ├── config.js         # 設定ファイル (~/.tapback.json) 読み書き
+│   ├── config.js         # 設定ファイル (~/.config/tapback/config.json) 読み書き
 │   └── html.js           # モバイルUI HTML生成
 ```
 
@@ -48,7 +48,7 @@ tapback-node/
 - **tmux.js**: tmuxコマンド（capture-pane, send-keys, list-sessions, display-message）のPromiseラッパー
 - **proxy.js**: http-proxyベースのリバースプロキシ。localhost参照を自動的にMacのIPに書き換え
 - **claudeStatus.js**: Claude Codeフック設置、ステータス受信・保存。`~/.claude/settings.json`を更新
-- **config.js**: `~/.tapback.json`による設定永続化（PIN有効/無効、プロキシポート、クイックボタン）
+- **config.js**: `~/.config/tapback/config.json`による設定永続化（PIN有効/無効、プロキシポート、クイックボタン）
 - **html.js**: モバイル向けレスポンシブWebUI、設定ページ、PIN認証ページ
 
 ### 通信フロー
@@ -81,4 +81,4 @@ tapback-node/
 - tmuxコマンドは明示的に`session:0.0`を指定（複数ウィンドウ/ペーン対応のため）
 - PATH設定で`/opt/homebrew/bin`と`/usr/local/bin`を追加（tmux検出用）
 - プロキシはlocalhost参照を自動的にMacのIPに書き換え
-- 設定ファイルは`~/.tapback.json`に保存
+- 設定ファイルは`~/.config/tapback/config.json`に保存

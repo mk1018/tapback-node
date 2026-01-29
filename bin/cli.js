@@ -9,7 +9,7 @@ const config = require('../src/config');
 const cfg = config.load();
 
 // CLI args override config
-let port = 9876;
+let port = Number(process.env.PORT) || 9876;
 const proxyPorts = { ...cfg.proxyPorts };
 
 for (let i = 2; i < process.argv.length; i++) {
