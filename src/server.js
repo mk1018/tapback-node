@@ -204,7 +204,7 @@ function createServer({ port = 9876, pinEnabled = true, quickButtons = [], appUR
         if (ws.readyState === 1) ws.send(msg);
       }
     }
-  }, 1000);
+  }, 500);
 
   server.listen(port, '0.0.0.0');
 
